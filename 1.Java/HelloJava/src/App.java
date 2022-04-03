@@ -1,6 +1,8 @@
 import testpackage.*;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
 
 import solutionpackage.Solutions;
 
@@ -32,7 +34,7 @@ public class App {
 
 
         int[] num3 = {-4,-1,0,3,10};
-        //System.out.println(Arrays.toString(mySolution.sortedSquares(num3)));
+        // System.out.println(Arrays.toString(mySolution.sortedSquares(num3)));
 
 
         int[] arr = {0,1,3,4,0,5,2,1};
@@ -57,8 +59,43 @@ public class App {
         // System.out.print(mySolution.checkIfExist(arr105));
     
         int[] arr106 = {5,4,3,2,1,0};
-        System.out.print(mySolution.validMountainArray(arr106));
+        // System.out.print(mySolution.validMountainArray(arr106));
 
+        int[] arr107 = {0};
+        mySolution.moveZeroes(arr107);
+        // System.out.print(Arrays.toString(arr107));
+
+        int[] arr108 = {3,1,2,4};
+        // System.out.print(Arrays.toString(mySolution.sortArrayByParity(arr108)));
+
+        int[] arr109 = {1,1,4,2,1,3};
+        //System.out.print(mySolution.heightChecker(arr109));
+
+        int[] arr110 = {2,2,3,1};
+        // System.out.print(mySolution.thirdMax(arr110));
+
+        // HashSet<Integer> hh = new HashSet<Integer>();
+
+        // hh.add(1);
+        // hh.add(2);
+        // hh.add(3);
+        // hh.add(300);
+        // hh.add(301);
+        // hh.remove(3);
+        // hh.contains(2);
+
+        // System.out.println(hh);
+        // System.out.println(Arrays.toString(hh.toArray()));
+        // System.out.println(hh.hashCode());
+        // System.out.println(hh.isEmpty());
+
+        // Iterator<Integer> it = hh.iterator();
+        // while (it.hasNext()) {
+        //     System.out.println(it.next());
+        // }
+
+        int[] arr111 = {4,3,2,7,8,2,3,1};
+        // System.out.print(mySolution.findDisappearedNumbers(arr111));
 
     }   
 }

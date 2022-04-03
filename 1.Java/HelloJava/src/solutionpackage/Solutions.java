@@ -1,5 +1,8 @@
 package solutionpackage;
 import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Solutions {
 
@@ -57,15 +60,38 @@ public class Solutions {
     //Squares of a Sorted Array
     public int[] sortedSquares(int[] nums) {
 
-    for (int i=0; i < nums.length; i++) {
+    // for (int i=0; i < nums.length; i++) {
+    //     nums[i] = nums[i]*nums[i];
+    // }
+    // Arrays.sort(nums);
+    // return nums;
+    // The above solution is not ideal because Arrays.sort has a time complexity of O(nlog(n)). The below solves the issue without sorting at O(n) time with a cost of O(n) space. 
 
-        nums[i] = nums[i]*nums[i];
-
-    }
-
-    Arrays.sort(nums);
-    return nums;
-    
+        int[] results = new int[nums.length];
+            
+        int writePointer=nums.length-1;
+        int leftPointer=0; 
+        int rightPointer=nums.length-1;
+        
+        while (writePointer >= 0){
+            
+            if (Math.abs(nums[leftPointer]) > Math.abs(nums[rightPointer])) {
+            
+                results[writePointer] = nums[leftPointer]*nums[leftPointer];
+                
+                leftPointer++;
+                writePointer--;
+                    
+            } else {
+                
+                results[writePointer] = nums[rightPointer] * nums[rightPointer]; 
+                
+                rightPointer--;
+                writePointer--;
+                
+            }
+        }
+        return results;
 }
     
     //Duplicate Zeros
@@ -263,7 +289,6 @@ public class Solutions {
 
     }
 
-
     //Replace Elements with Greatest Element on Right Side
     public int[] replaceElements(int[] arr) {
         
@@ -295,5 +320,128 @@ public class Solutions {
         return arr;
     }
 
+    //Move Zeroes
+    public void moveZeroes(int[] nums) {
+        
+        int writePointer = 0;
+        int zeroCount = 0; 
+        
+        
+        for (int readPointer = 0; readPointer < nums.length; readPointer++) {
+            
+            if(nums[readPointer]!=0) {
+                nums[writePointer] = nums[readPointer];
+                
+                writePointer++;
+                continue;
+            }
+            
+            zeroCount++;  
+            
+        }
+        
+        for (int i = nums.length-1; i >= nums.length - zeroCount; i--) {
+            
+            nums[i] = 0;
+                
+        }
+        
+    }
+
+    //Sort Array By Parity
+    public int[] sortArrayByParity(int[] nums) {
+        
+        int evenWritePointer = 0; 
+        int oddWritePointer = nums.length-1; 
+        
+        int[] result = new int[nums.length];
+        
+        for (int readPointer=0; readPointer < nums.length; readPointer++) {
+            
+            if (nums[readPointer]%2==0) {
+                
+                result[evenWritePointer] = nums[readPointer];
+                evenWritePointer++;
+                    
+            } else {
+                result[oddWritePointer] = nums[readPointer];
+                oddWritePointer--;
+            }
+        }
+        return result;
+    }
+
+    //Height Checker
+    public int heightChecker(int[] heights) {
+        //sort to expectedp[]
+        //find heights[i] != expected[i]
+        
+        int mismatchCount = 0; 
+        
+        if(heights.length == 0) {
+            return 0; 
+        }
+        
+        //int[] expected = heights;                    // <----- This is wrong, it simply assign a reference to the origianl array.
+
+        int[] expected = Arrays.copyOf(heights, heights.length);
+        Arrays.sort(expected);
+        
+        for (int i=0; i < heights.length; i++) {
+            if (heights[i] != expected[i]) {
+                mismatchCount++; 
+            }
+        }
+        return mismatchCount; 
+        
+    }
+
+    //Third Maximum Number
+    public int thirdMax(int[] nums) {
+        
+        Arrays.sort(nums);
+        
+        int length = nums.length; 
+        int writePointer = 1; 
+        
+        for (int readPointer=1; readPointer < nums.length; readPointer++) {
+            
+            if (nums[readPointer] != nums[readPointer-1]) {
+                nums[writePointer] = nums[readPointer];
+                writePointer++;
+            }
+            else {
+                length--;
+            }
+            
+        }
+        
+        
+        if (length < 3){
+            return nums[length-1];
+        } 
+        
+        return nums[length-3];
+        
+    
+    }
+
+    //Find All Numbers Disappeared in an Array
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        
+        List<Integer> results = new ArrayList<Integer>(); 
+        HashSet<Integer> numHash = new HashSet<Integer>();
+    
+        for (int i=0; i < nums.length; i++){
+            numHash.add(nums[i]);
+        }
+        
+        for (int i=1; i <= nums.length; i++){
+            if (!numHash.contains(i)){
+                results.add(i);
+            }
+        }    
+        return results;
+    }
 
 }
