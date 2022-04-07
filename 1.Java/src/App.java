@@ -1,4 +1,4 @@
-import testpackage.*;
+import dvdpackage.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -98,6 +98,21 @@ public class App {
         int[] arr111 = {4,3,2,7,8,2,3,1};
         // System.out.print(mySolution.findDisappearedNumbers(arr111));
         
+
+        MyLinkedList myList = new MyLinkedList(); 
+
+        myList.addAtHead(-4);
+        myList.addAtHead(0);
+        myList.addAtHead(2);
+        
+        myList.setTailNext(myList.getHead());
+        
+        myList.addAtHead(3);
+        myList.printMore(16);
+        myList.print();
+
+        System.out.println(myList.hasCycle());
+
 
     
 

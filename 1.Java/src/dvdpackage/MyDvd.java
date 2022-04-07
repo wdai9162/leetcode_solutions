@@ -1,4 +1,4 @@
-package testpackage;
+package dvdpackage;
 
 public class MyDvd {
     public String name;
