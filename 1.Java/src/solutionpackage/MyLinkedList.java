@@ -1,8 +1,13 @@
 package solutionpackage;
 
+import java.util.HashSet;
 import java.util.spi.CurrencyNameProvider;
 
-//Design Linked List
+import javax.naming.NamingException;
+
+import java.util.HashSet;
+
+//Design Linked List / Linked List Cycle
 public class MyLinkedList {
 
     Node head;
@@ -155,19 +160,39 @@ public class MyLinkedList {
         System.out.println();
     }
 
+    //Linked List Cycle
     public boolean hasCycle() {
         
-        //two pointers solution，space complexity = O(1)
         //Brutle force uses hashset，check element 1 by 1，space complexity = O(n)
+        // HashSet<Node> nodeSeen = new HashSet<Node>();
+        // Node curNode; 
 
+        // if (head != null && head.next != null){
+        //     curNode=head; 
+        // } else { return false; }
+
+        // while ( curNode != null ) {
+
+        //     if (nodeSeen.contains(curNode)){
+        //         return true;
+        //     } else {
+        //         nodeSeen.add(curNode);
+        //         curNode=curNode.next;
+        //     }
+
+        // }
+        // return false;
+        ////////////////////////////////////////////////////////////////////////////
+
+        //two pointers solution，space complexity = O(1)
         if (head == null || head.next == null) {
             return false; 
         } 
-        
+        boolean loopControl = true;
         Node slow = head; 
-        Node fast = head.next; 
+        Node fast = head; 
         
-        while(slow != fast) {
+        while(slow != fast || loopControl == true) {
             
             if (fast == null || fast.next == null ) {  //need to check fast and fast.next in order，the sequence matters，otherwise if fast itslef is null fast.next will throw an error
                 return false; 
@@ -175,11 +200,224 @@ public class MyLinkedList {
 
             slow = slow.next;
             fast = fast.next.next;
-            
+            loopControl = false;
         }
-        
         return true;
     }
 
+    //Linked List Cycle II
+    public Node findIntersection() {
+            
+        if (head == null || head.next == null) {
+        return null; 
+        } 
+
+        boolean loopControl = true;
+        Node slow = head; 
+        Node fast = head; 
     
+        while(slow != fast || loopControl == true) {
+        
+            if (fast == null || fast.next == null ) { 
+            return null; 
+            }
+
+            slow = slow.next;
+            fast = fast.next.next;
+            loopControl = false;
+        }
+        return slow;
+    }
+
+    //Linked List Cycle II
+    public Node detectCycle(Node head) {
+
+        //two pointers solution，space complexity = O(1)
+        //Step 1: find slow and fast intersection as in Linked List Cycle
+        //Step 2: (head to startLoop = intersection to startLoop), therefore move head and intersection 1 step at a time until they meet 
+        HashSet<Node> nodeHash = new HashSet<Node>(); 
+        
+        if (head == null || head.next == null) {
+            return null;
+        }
+
+        Node curNode = head; 
+        Node intersection = findIntersection();
+        
+
+        while (curNode != intersection) {
+
+            if (intersection == null || intersection.next == null) { 
+                return null; 
+            }
+            curNode = curNode.next;
+            intersection = intersection.next;
+        }
+
+        return curNode;
+    }
+
+    //Intersection of Two Linked Lists
+    public Node getIntersectionNode(Node headA, Node headB) {
+        
+        //time complexity = O(m+n)
+        //space complexity = O(max(m,n))
+
+        // if (headA == null || headB == null) {
+        //     return null;
+        // }
+        
+        // HashSet<Node> nodeHash = new HashSet<Node>(); 
+        
+        // while (headA != null){
+            
+        //     nodeHash.add(headA);
+        //     headA = headA.next;
+            
+        // }
+        
+        // while (headB != null){
+        //     if (nodeHash.contains(headB)) {
+        //         return headB;
+        //     }
+        //     headB = headB.next; 
+        // }
+
+        //////////////////////////////////////////////////////////
+        //space complexity = O(1) solution, append each list to each other so that after 1 complete loop, both queues start together at the same place. 
+
+        if (headA == null || headB == null) {
+            return null;
+        }
+
+        Node a_pointer = headA; 
+        Node b_pointer = headB; 
+
+        while (a_pointer != b_pointer){
+
+            if (a_pointer == null){
+                a_pointer = headB; 
+            } else {
+                a_pointer = a_pointer.next;
+            }
+
+            if (b_pointer == null){
+                b_pointer = headA; 
+            } else {
+                b_pointer = b_pointer.next;
+            }
+        }
+
+        //if both end at Null, means no intersection 
+        if (a_pointer == null && b_pointer == null){
+            return null;
+        }
+
+
+        return a_pointer;   
+    }
+    
+    //Remove Nth Node From End of List
+    public Node removeNthFromEnd(Node head, int n) {
+        
+        Node slowPointer = null;
+        Node fastPointer = null; 
+        
+        if (head != null){
+             slowPointer = head;
+             fastPointer = head; 
+        }
+        
+        //move fastPointer forward N steps. So when it reached the end, .next=null, the slowPointer arrives and the Nth last. 
+        for (int i=0; i < n; i++){
+            fastPointer = fastPointer.next;
+        }
+        
+        while ( fastPointer != null && fastPointer.next != null) {
+            
+            fastPointer = fastPointer.next; 
+            slowPointer = slowPointer.next; 
+            
+        }
+        
+        if ( fastPointer == null) {
+            head = head.next; 
+        } else {
+            slowPointer.next = slowPointer.next.next;
+        }
+        
+        return head;
+        
+    }
+
+    //Reverse Linked List
+    public Node reverseList() {
+        
+        Node curNode = null;
+        Node nxtNode = null; 
+
+        if (head==null || head.next==null){
+            return head; 
+        } else {
+            curNode = head.next; 
+            head.next = null;     //第一个head原本是指向第二个element的，如果不null那么最后就会有一个loop
+        }
+
+        while(curNode != null) {
+            System.out.print("loop");
+            nxtNode = curNode.next;
+            curNode.next = head; 
+            head = curNode;
+            curNode = nxtNode; 
+            System.out.print(head.next.next.data);
+        }
+
+        return head;
+    }
+
+    //Remove Linked List Elements
+    public Node removeElements(Node head, int val) {
+        
+        Node fastPointer = null;
+        Node slowPointer = null; 
+        
+        if (head != null) {
+            
+            while (head != null && head.data == val ) {
+                head = head.next; 
+            }
+            
+             if (head == null) {
+                 return null; 
+             }
+            
+            slowPointer = head; 
+            fastPointer = head.next; 
+        }  else {
+            return null; 
+        }
+        
+        
+        while (fastPointer != null) {
+            
+            if (fastPointer.data == val){
+            
+                slowPointer.next = fastPointer.next;
+                fastPointer = fastPointer.next; 
+            
+            } else {
+                
+                slowPointer = slowPointer.next; 
+                fastPointer = fastPointer.next; 
+                
+            }
+            
+            
+        }
+        
+        return head; 
+
+        
+    }
+
 }

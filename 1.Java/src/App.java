@@ -104,18 +104,31 @@ public class App {
         myList.addAtHead(-4);
         myList.addAtHead(0);
         myList.addAtHead(2);
-        
-        myList.setTailNext(myList.getHead());
-        
         myList.addAtHead(3);
-        myList.printMore(16);
+
         myList.print();
 
-        System.out.println(myList.hasCycle());
+        myList.reverseList();
+
+        System.out.println();
+        System.out.print(myList.get(0) + " ");
+        System.out.print(myList.get(1) + " ");
+        System.out.print(myList.get(2) + " ");
+        System.out.print(myList.get(3) + " ");
 
 
-    
+   
+ 
+
 
        
     }   
 }
+
+
+
+
+
+
+
+
