@@ -351,27 +351,24 @@ public class MyLinkedList {
     }
 
     //Reverse Linked List
-    public Node reverseList() {
-        
-        Node curNode = null;
-        Node nxtNode = null; 
+    public Node reverseList(Node head) {
 
         if (head==null || head.next==null){
             return head; 
-        } else {
-            curNode = head.next; 
-            head.next = null;     //第一个head原本是指向第二个element的，如果不null那么最后就会有一个loop
-        }
+        } 
+        
+        Node curNode = head.next; 
+        head.next = null;        //第一个head原本是指向第二个element的，如果不null那么当它成为tail以后就会有一个loop
+        
 
         while(curNode != null) {
-            System.out.print("loop");
-            nxtNode = curNode.next;
+            Node nxtNode = curNode.next;
             curNode.next = head; 
             head = curNode;
             curNode = nxtNode; 
-            System.out.print(head.next.next.data);
         }
 
+        this.head = head;
         return head;
     }
 
@@ -419,5 +416,48 @@ public class MyLinkedList {
 
         
     }
+
+    //Palindrome Linked List
+    public Node findMiddle(Node head) {
+
+        if(head==null || head.next==null) {
+            return head; 
+        }
+
+        Node slow = head; 
+        Node fast = head.next; 
+        
+        while(fast != null && fast.next != null){
+
+            slow = slow.next;
+            fast = fast.next.next; 
+
+        }
+        return slow; 
+    }
+
+    //Palindrome Linked List
+    public Node reverseList2(Node middle) {
+
+        if (middle==null || middle.next==null){
+            return middle; 
+        } 
+        
+        Node curNode = middle.next; 
+        Node originMiddle = middle;
+        middle.next = null;        //第一个head原本是指向第二个element的，如果不null那么当它成为tail以后就会有一个loop
+        
+
+        while(curNode != null) {
+            Node nxtNode = curNode.next;
+            curNode.next = middle; 
+            middle = curNode;
+            curNode = nxtNode; 
+        }
+
+        originMiddle.next = middle;
+        return middle;
+    }
+
 
 }

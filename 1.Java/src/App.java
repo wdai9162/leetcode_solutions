@@ -101,23 +101,33 @@ public class App {
 
         MyLinkedList myList = new MyLinkedList(); 
 
-        myList.addAtHead(-4);
-        myList.addAtHead(0);
+        myList.addAtHead(1);
         myList.addAtHead(2);
         myList.addAtHead(3);
+        myList.addAtHead(4);
+        myList.addAtHead(5);
+        myList.addAtHead(6 );
 
+        // myList.print();
+        // myList.reverseList2(myList.findMiddle(myList.getHead()));
+
+        
         myList.print();
+        myList.reverseList(myList.getHead());
+        
+        
+        myList.print();
+        // myList.reverseList(myList.getHead());
+        
+        
+        // System.out.print(myList.get(0) + " ");
+        // System.out.print(myList.get(1) + " ");
+        // System.out.print(myList.get(2) + " ");
+        // System.out.print(myList.get(3) + " ");
+        // System.out.print(myList.get(4) + " ");
+        // System.out.print(myList.get(5) + " ");
 
-        myList.reverseList();
-
-        System.out.println();
-        System.out.print(myList.get(0) + " ");
-        System.out.print(myList.get(1) + " ");
-        System.out.print(myList.get(2) + " ");
-        System.out.print(myList.get(3) + " ");
-
-
-   
+        // System.out.println();
  
 
 
