@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 import solutionpackage.Solutions;
+import solutionpackage.MyDoubleLinkedList;
 import solutionpackage.MyLinkedList;
 
 public class App {
@@ -99,37 +100,10 @@ public class App {
         // System.out.print(mySolution.findDisappearedNumbers(arr111));
         
 
-        MyLinkedList myList = new MyLinkedList(); 
+        MyDoubleLinkedList myList = new MyDoubleLinkedList(); 
 
         myList.addAtHead(1);
-        myList.addAtHead(2);
-        myList.addAtHead(3);
-        myList.addAtHead(4);
-        myList.addAtHead(5);
-        myList.addAtHead(6 );
-
-        // myList.print();
-        // myList.reverseList2(myList.findMiddle(myList.getHead()));
-
-        
-        myList.print();
-        myList.reverseList(myList.getHead());
-        
-        
-        myList.print();
-        // myList.reverseList(myList.getHead());
-        
-        
-        // System.out.print(myList.get(0) + " ");
-        // System.out.print(myList.get(1) + " ");
-        // System.out.print(myList.get(2) + " ");
-        // System.out.print(myList.get(3) + " ");
-        // System.out.print(myList.get(4) + " ");
-        // System.out.print(myList.get(5) + " ");
-
-        // System.out.println();
- 
-
+        myList.addAtTail(3);
 
        
     }   
