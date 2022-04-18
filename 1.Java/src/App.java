@@ -102,12 +102,29 @@ public class App {
 
         MyDoubleLinkedList myList = new MyDoubleLinkedList(); 
 
-        myList.addAtHead(1);
-        myList.addAtTail(3);
+        myList.addAtHead(2);
+        myList.deleteAtIndex(1);
+        myList.addAtHead(2);
+        myList.addAtHead(7);
+        myList.addAtHead(3);
+        myList.addAtHead(2);
+        myList.addAtHead(5);
+        myList.addAtTail(5);
+        System.out.println(myList.get(5));
+        myList.print();
+        myList.deleteAtIndex(6);
+    
 
-       
+// ""deleteAtIndex","deleteAtIndex"]
+// [6],[4]]
+
+
     }   
 }
+
+
+
+
 
 
 

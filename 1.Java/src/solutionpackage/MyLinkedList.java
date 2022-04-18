@@ -418,7 +418,6 @@ public class MyLinkedList {
         
     }
 
-
     //Palindrome Linked List ---- NOT working !
     public boolean isPalindrome(Node head) {
         
@@ -445,7 +444,6 @@ public class MyLinkedList {
         return true;
     }
 
-
     //Palindrome Linked List  
     public Node findMiddle(Node head) {
         
@@ -470,7 +468,7 @@ public class MyLinkedList {
 
         if (middle==null || middle.next==null){
             return middle; 
-        } 
+        }
         
         Node curNode = middle.next; 
         Node originMiddle = middle;    //储存原有的middle，完成时重新连接

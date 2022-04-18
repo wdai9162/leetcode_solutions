@@ -51,6 +51,8 @@ public class MyDoubleLinkedList {
 
         if (this.head == null) {
             this.head = newNode;
+            size++;
+            return;
         }
 
         newNode.next = this.head; 
@@ -72,6 +74,7 @@ public class MyDoubleLinkedList {
         Node curNode = this.head;
 
         while (curNode.next != null) {
+        
             curNode = curNode.next;
         }
 
@@ -84,12 +87,12 @@ public class MyDoubleLinkedList {
         
         Node newNode = new Node(val);
 
-        if ( index < 0 || index > size-1 ) {
+        if ( index < 0 || index > size ) {
             return; 
         } else if (this.head == null || index == 0) {
             addAtHead(val);
             return;
-        } else if (index == size-1) {
+        } else if (index == size) {
             addAtTail(val);
             return;
         }
@@ -104,7 +107,7 @@ public class MyDoubleLinkedList {
 
         //        (cur)     (nxt)
         //x    x    x    y    x    x 
-        
+        System.out.println(curNode.data);
         nextNode = curNode.next;
         curNode.next = newNode;
         newNode.previous = curNode;
@@ -118,9 +121,18 @@ public class MyDoubleLinkedList {
 
         if ( index < 0 || index > size-1 ) {
             return; 
-        } else if (this.head == null || index == 0) {
+        } else if ( this.head == null ) {
             return;
-        } 
+        } else if ( index == 0 ){
+            if (this.head.next == null){
+                this.head = null;
+            } else {
+                this.head = head.next;
+                this.head.previous = null;
+            }
+            size--;
+            return;
+        }
     
         Node curNode = this.head;
         Node nextNode;
@@ -132,10 +144,15 @@ public class MyDoubleLinkedList {
             curNode = curNode.next;
             index--; 
         }
+
+        if ( curNode.next.next == null ){    //delete the tail node
+            curNode.next = null;
+        } else {
+            nextNode = curNode.next.next;
+            curNode.next = nextNode;
+            nextNode.previous = curNode;
+        }
         
-        nextNode = curNode.next.next;
-        curNode.next = nextNode;
-        nextNode.previous = curNode;
         size--;
         
     }
