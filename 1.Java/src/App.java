@@ -1,11 +1,12 @@
 import dvdpackage.*;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
+
 
 import solutionpackage.Solutions;
 import solutionpackage.MyDoubleLinkedList;
+import solutionpackage.MyHashSet;
+import solutionpackage.MyHashMap;
 import solutionpackage.MyLinkedList;
 
 public class App {
@@ -76,49 +77,29 @@ public class App {
         int[] arr110 = {2,2,3,1};
         // System.out.print(mySolution.thirdMax(arr110));
 
-        // HashSet<Integer> hh = new HashSet<Integer>();
 
-        // hh.add(1);
-        // hh.add(2);
-        // hh.add(3);
-        // hh.add(300);
-        // hh.add(301);
-        // hh.remove(3);
-        // hh.contains(2);
+        // List<ArrayList<Integer>> bucketlist = new ArrayList<ArrayList<Integer>>(100);
 
-        // System.out.println(hh);
-        // System.out.println(Arrays.toString(hh.toArray()));
-        // System.out.println(hh.hashCode());
-        // System.out.println(hh.isEmpty());
+        // bucketlist.add(234);
 
-        // Iterator<Integer> it = hh.iterator();
-        // while (it.hasNext()) {
-        //     System.out.println(it.next());
-        // }
-
-        int[] arr111 = {4,3,2,7,8,2,3,1};
-        // System.out.print(mySolution.findDisappearedNumbers(arr111));
-        
-
-        MyDoubleLinkedList myList = new MyDoubleLinkedList(); 
-
-        myList.addAtHead(2);
-        myList.deleteAtIndex(1);
-        myList.addAtHead(2);
-        myList.addAtHead(7);
-        myList.addAtHead(3);
-        myList.addAtHead(2);
-        myList.addAtHead(5);
-        myList.addAtTail(5);
-        System.out.println(myList.get(5));
-        myList.print();
-        myList.deleteAtIndex(6);
-    
-
-// ""deleteAtIndex","deleteAtIndex"]
-// [6],[4]]
+        // bucketlist.add(0,new ArrayList<>());
+        // System.out.println(bucketlist);
 
 
+        MyHashSet hashset = new MyHashSet();
+        hashset.add(1);
+        hashset.add(1234);
+        hashset.add(1234);
+        hashset.remove(1234);
+
+
+        MyHashMap hashmap = new MyHashMap(); 
+        hashmap.put(1,1);
+
+
+        // ArrayList<int[]> hashTable = new ArrayList<int[]>();
+        // hashTable.set(0, new int[2]);
+        // hashTable.get(0);
     }   
 }
 
