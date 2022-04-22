@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class MyHashMap {
 
     //hash = key%1000 
-    //collision is not handled
     int maxKeySize = 1000000;
     int maxBucketSize = 1000; 
 

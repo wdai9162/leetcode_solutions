@@ -1,10 +1,8 @@
 package solutionpackage;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.*;
 
-public class Solutions {
+
+public class MySolutions {
 
     //Max Consecutive Ones
     public int findMaxConsecutiveOnes(int[] nums) {
@@ -443,5 +441,50 @@ public class Solutions {
         }    
         return results;
     }
+
+    //Contains Duplicate
+    public boolean containsDuplicate(int[] nums) {
+        
+        if (nums.length == 0){
+            return false;
+        }
+
+        Set<Integer> hashset = new HashSet<Integer>();
+
+        for(int i: nums) {
+
+            if (hashset.contains(i)) { 
+                return true;
+            } else {
+                hashset.add(i);
+            }
+        }
+        return false; 
+    }
+
+    //Single Number ---> bit manipulation???
+    public int singleNumber(int[] nums) {
+        
+        HashSet<Integer> hashset = new HashSet<Integer>();
+
+        for (int i: nums) {
+            if (hashset.contains(i)){
+                hashset.remove(i);
+            } else {
+                hashset.add(i);
+            }
+        }
+
+        for (int i: nums) {
+            if (hashset.contains(i)){
+                return i;
+            } 
+        }
+        
+        return 0;
+    }
+
+    //Binary Tree Preorder Traversal
+    
 
 }

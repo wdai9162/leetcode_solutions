@@ -2,8 +2,7 @@ import dvdpackage.*;
 
 import java.util.*;
 
-
-import solutionpackage.Solutions;
+import solutionpackage.MySolutions;
 import solutionpackage.MyDoubleLinkedList;
 import solutionpackage.MyHashSet;
 import solutionpackage.MyHashMap;
@@ -28,7 +27,8 @@ public class App {
             //System.out.println(i.toString());
         }
 
-        Solutions mySolution = new Solutions(); 
+        MySolutions mySolution = new MySolutions(); 
+
         int[] nums = {0,1,1,1,1,0,0};
         // System.out.println(mySolution.findMaxConsecutiveOnes(nums));
 
@@ -86,20 +86,35 @@ public class App {
         // System.out.println(bucketlist);
 
 
-        MyHashSet hashset = new MyHashSet();
-        hashset.add(1);
-        hashset.add(1234);
-        hashset.add(1234);
-        hashset.remove(1234);
+        // MyHashSet hashset = new MyHashSet();
+        // hashset.add(1);
+        // hashset.add(1234);
+        // hashset.add(1234);
+        // hashset.remove(1234);
 
 
-        MyHashMap hashmap = new MyHashMap(); 
-        hashmap.put(1,1);
+        // MyHashMap hashmap = new MyHashMap(); 
+        // hashmap.put(1,1);
 
 
-        // ArrayList<int[]> hashTable = new ArrayList<int[]>();
-        // hashTable.set(0, new int[2]);
-        // hashTable.get(0);
+        int[] nums131 = {1,2,3,4};
+        System.out.println(mySolution.containsDuplicate(nums131));
+
+        String name = "David";
+        char[] charArray = name.toCharArray();
+        for (char letter: charArray) {
+            System.out.println(letter);
+        }
+
+        char[] reversed = new char[5]; 
+        int j = 0; 
+
+        for (int i=charArray.length-1; i>=0; i--) {
+            reversed[j] = charArray[i];
+            j++;
+        }
+
+        System.out.println(reversed);
     }   
 }
 
