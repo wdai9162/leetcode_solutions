@@ -1,10 +1,11 @@
 import dvdpackage.*;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
 
-import solutionpackage.Solutions;
+import solutionpackage.MySolutions;
+import solutionpackage.MyDoubleLinkedList;
+import solutionpackage.MyHashSet;
+import solutionpackage.MyHashMap;
 import solutionpackage.MyLinkedList;
 
 public class App {
@@ -26,7 +27,8 @@ public class App {
             //System.out.println(i.toString());
         }
 
-        Solutions mySolution = new Solutions(); 
+        MySolutions mySolution = new MySolutions(); 
+
         int[] nums = {0,1,1,1,1,0,0};
         // System.out.println(mySolution.findMaxConsecutiveOnes(nums));
 
@@ -75,55 +77,50 @@ public class App {
         int[] arr110 = {2,2,3,1};
         // System.out.print(mySolution.thirdMax(arr110));
 
-        // HashSet<Integer> hh = new HashSet<Integer>();
 
-        // hh.add(1);
-        // hh.add(2);
-        // hh.add(3);
-        // hh.add(300);
-        // hh.add(301);
-        // hh.remove(3);
-        // hh.contains(2);
+        // List<ArrayList<Integer>> bucketlist = new ArrayList<ArrayList<Integer>>(100);
 
-        // System.out.println(hh);
-        // System.out.println(Arrays.toString(hh.toArray()));
-        // System.out.println(hh.hashCode());
-        // System.out.println(hh.isEmpty());
+        // bucketlist.add(234);
 
-        // Iterator<Integer> it = hh.iterator();
-        // while (it.hasNext()) {
-        //     System.out.println(it.next());
-        // }
-
-        int[] arr111 = {4,3,2,7,8,2,3,1};
-        // System.out.print(mySolution.findDisappearedNumbers(arr111));
-        
-
-        MyLinkedList myList = new MyLinkedList(); 
-
-        myList.addAtHead(-4);
-        myList.addAtHead(0);
-        myList.addAtHead(2);
-        myList.addAtHead(3);
-
-        myList.print();
-
-        myList.reverseList();
-
-        System.out.println();
-        System.out.print(myList.get(0) + " ");
-        System.out.print(myList.get(1) + " ");
-        System.out.print(myList.get(2) + " ");
-        System.out.print(myList.get(3) + " ");
+        // bucketlist.add(0,new ArrayList<>());
+        // System.out.println(bucketlist);
 
 
-   
- 
+        // MyHashSet hashset = new MyHashSet();
+        // hashset.add(1);
+        // hashset.add(1234);
+        // hashset.add(1234);
+        // hashset.remove(1234);
 
 
-       
+        // MyHashMap hashmap = new MyHashMap(); 
+        // hashmap.put(1,1);
+
+
+        int[] nums131 = {1,2,3,4};
+        System.out.println(mySolution.containsDuplicate(nums131));
+
+        String name = "David";
+        char[] charArray = name.toCharArray();
+        for (char letter: charArray) {
+            System.out.println(letter);
+        }
+
+        char[] reversed = new char[5]; 
+        int j = 0; 
+
+        for (int i=charArray.length-1; i>=0; i--) {
+            reversed[j] = charArray[i];
+            j++;
+        }
+
+        System.out.println(reversed);
     }   
 }
+
+
+
+
 
 
 

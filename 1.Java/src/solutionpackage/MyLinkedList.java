@@ -158,6 +158,7 @@ public class MyLinkedList {
         for (int i = 0; i < this.size; i++ ){
             System.out.print(get(i)+" ");
         }
+        System.out.println();
     }
 
     public void printMore(int number) {
@@ -366,27 +367,24 @@ public class MyLinkedList {
     }
 
     //Reverse Linked List
-    public Node reverseList() {
-        
-        Node curNode = null;
-        Node nxtNode = null; 
+    public Node reverseList(Node head) {
 
         if (head==null || head.next==null){
             return head; 
-        } else {
-            curNode = head.next; 
-            head.next = null;     //第一个head原本是指向第二个element的，如果不null那么最后就会有一个loop
-        }
+        } 
+        
+        Node curNode = head.next; 
+        head.next = null;        //第一个head原本是指向第二个element的，如果不null那么当它成为tail以后就会有一个loop
+        
 
         while(curNode != null) {
-            System.out.print("loop");
-            nxtNode = curNode.next;
+            Node nxtNode = curNode.next;
             curNode.next = head; 
             head = curNode;
             curNode = nxtNode; 
-            System.out.print(head.next.next.data);
         }
 
+        this.head = head;
         return head;
     }
 
@@ -435,35 +433,79 @@ public class MyLinkedList {
         
     }
 
-    //Odd Even Linked List
-    public Node oddEvenList(Node head) {
+    //Palindrome Linked List ---- NOT working !
+    public boolean isPalindrome(Node head) {
         
-        ListNode reader = null; 
-        ListNode oddPointer = null;
-        ListNode evenPointer = null;
-        ListNode evenHead = null;
+        // 3 Steps: 
+        //findMiddle()
+        //reverseListHalf()
+        //compare the first hald and the second half
+
+        Node middle = findMiddle(head);
+        Node newMiddle = reverseListHalf(middle);
+
+        Node slow = head; 
+        Node fast = newMiddle;
         
-        if (head == null || head.next == null){
-            return head; 
-        } else {
-            reader = head; 
-            oddPointer = head;
-            evenPointer = head.next;
-            evenHead = evenPointer;
+        while (slow != newMiddle) {
+           
+            if (slow.data != fast.data) {
+                return false;
+            }
+            slow = slow.next;
+            fast = fast.next;
         }
 
-        while (reader != null && reader.next !=null && reader.next.next != null) { //every loop set the read and reader.next into even/odd lists. Therefore in an example [1,2,3,4,5,6,7,8] 7 is the last needed reader, no need to further move read into Null place. Therefore read.next.next !=null. 
-
-            reader = reader.next.next; 
-            oddPointer.next = reader;
-            evenPointer.next = reader.next; 
-            oddPointer = reader; 
-            evenPointer = reader.next; 
-
-        }
-        
-        oddPointer.next = evenHead; 
-
-        return head; 
+        return true;
     }
+
+    //Palindrome Linked List  
+    public Node findMiddle(Node head) {
+        
+        if(head==null || head.next==null) {
+            return head; 
+        }
+
+        Node slow = head; 
+        Node fast = head.next; 
+        
+        while(fast != null && fast.next != null){
+
+            slow = slow.next;
+            fast = fast.next.next; 
+
+        }
+        return slow; 
+    }
+
+    //Palindrome Linked List - reverse list from the middle node
+    public Node reverseListHalf(Node middle) {
+
+        if (middle==null || middle.next==null){
+            return middle; 
+        }
+        
+        Node curNode = middle.next; 
+        Node originMiddle = middle;    //储存原有的middle，完成时重新连接
+        middle.next = null;            //第一个head原本是指向第二个element的，如果不null那么当它成为tail以后就会有一个loop
+        
+        while(curNode != null) {
+            Node nxtNode = curNode.next;
+            curNode.next = middle; 
+            middle = curNode;
+            curNode = nxtNode; 
+        }
+
+        originMiddle.next = middle;     //re-link the reversed half
+        
+        //8 7 6 5 4 3 2 1 true
+        //8 7 6 5 1 2 3 4 5 1   <---- loop 以后的多出来的
+        //这里原有middle还是在正常序列中，因为无法改动middle前一个node的next
+        //但实际reverse的数列包括原有middle，把原有middle的next指定为最后反转的那个node之后，形成一个loop
+        //但是达到了反转一半的结果
+        //To improve: 1. clean half reverse; 2. reinstate the list order 
+
+        return middle;
+    }
+
 }
