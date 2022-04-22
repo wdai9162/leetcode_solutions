@@ -1,6 +1,8 @@
 package solutionpackage;
 
+import java.beans.EventHandler;
 import java.util.HashSet;
+import java.util.concurrent.locks.ReadWriteLock;
 import java.util.spi.CurrencyNameProvider;
 
 import javax.naming.NamingException;
@@ -21,6 +23,19 @@ public class MyLinkedList {
             data = d; 
         }
     }
+
+    // class ListNode {
+    //     int val; 
+    //     ListNode next; 
+    //     //Constructor 
+    //     ListNode(int d) {
+    //         this.val = d; 
+    //     }
+    //     ListNode(int val, ListNode next) { 
+    //         this.val = val; 
+    //         this.next = next; 
+    //     }
+    // }
 
     public MyLinkedList() {
         
@@ -420,4 +435,35 @@ public class MyLinkedList {
         
     }
 
+    //Odd Even Linked List
+    public Node oddEvenList(Node head) {
+        
+        ListNode reader = null; 
+        ListNode oddPointer = null;
+        ListNode evenPointer = null;
+        ListNode evenHead = null;
+        
+        if (head == null || head.next == null){
+            return head; 
+        } else {
+            reader = head; 
+            oddPointer = head;
+            evenPointer = head.next;
+            evenHead = evenPointer;
+        }
+
+        while (reader != null && reader.next !=null && reader.next.next != null) { //every loop set the read and reader.next into even/odd lists. Therefore in an example [1,2,3,4,5,6,7,8] 7 is the last needed reader, no need to further move read into Null place. Therefore read.next.next !=null. 
+
+            reader = reader.next.next; 
+            oddPointer.next = reader;
+            evenPointer.next = reader.next; 
+            oddPointer = reader; 
+            evenPointer = reader.next; 
+
+        }
+        
+        oddPointer.next = evenHead; 
+
+        return head; 
+    }
 }
