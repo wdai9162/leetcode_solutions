@@ -484,7 +484,35 @@ public class MySolutions {
         return 0;
     }
 
-    //Binary Tree Preorder Traversal
+    //Intersection of Two Arrays
+    public int[] intersection(int[] nums1, int[] nums2) {
+        
+        HashSet<Integer> hashset = new HashSet<Integer>(); 
+        
+        HashSet<Integer> results = new HashSet<Integer>(); 
+        
+        for (int i: nums1) {
+            hashset.add(i);
+        }
+        
+        for (int j: nums2) {
+            if (hashset.contains(j)){
+                System.out.println(j);
+                results.add(j);
+            }
+        }
+        
+        Iterator<Integer> it = results.iterator();
+        int[] res = new int[results.size()]; 
+        int i=0; 
+        while(it.hasNext()){
+            res[i] = it.next();
+            i++;
+        }
+
+        return res;
+        
+    }
     
 
 }

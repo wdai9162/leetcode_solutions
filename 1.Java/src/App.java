@@ -97,24 +97,33 @@ public class App {
         // hashmap.put(1,1);
 
 
-        int[] nums131 = {1,2,3,4};
-        System.out.println(mySolution.containsDuplicate(nums131));
+        // int[] nums131 = {1,2,3,4};
+        // System.out.println(mySolution.containsDuplicate(nums131));
 
-        String name = "David";
-        char[] charArray = name.toCharArray();
-        for (char letter: charArray) {
-            System.out.println(letter);
-        }
+        // String name = "David";
+        // char[] charArray = name.toCharArray();
+        // for (char letter: charArray) {
+        //     System.out.println(letter);
+        // }
 
-        char[] reversed = new char[5]; 
-        int j = 0; 
+        // char[] reversed = new char[5]; 
+        // int j = 0; 
 
-        for (int i=charArray.length-1; i>=0; i--) {
-            reversed[j] = charArray[i];
-            j++;
-        }
+        // for (int i=charArray.length-1; i>=0; i--) {
+        //     reversed[j] = charArray[i];
+        //     j++;
+        // }
 
-        System.out.println(reversed);
+        // System.out.println(reversed);
+
+
+        int[] num333 = {4,9,5};
+        int[] num666 = {9,4,9,8,4};
+
+        mySolution.intersection(num333, nums666);
+        
+
+        
     }   
 }
 
