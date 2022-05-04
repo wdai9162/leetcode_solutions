@@ -2,15 +2,13 @@ import dvdpackage.*;
 
 import java.util.*;
 
-import solutionpackage.MySolutions;
-import solutionpackage.MyDoubleLinkedList;
-import solutionpackage.MyHashSet;
-import solutionpackage.MyHashMap;
-import solutionpackage.MyLinkedList;
+import javax.swing.tree.TreeNode;
+
+import solutionpackage.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        
+
         MyDvd[] DvdCollection = new MyDvd[10];
 
         DvdCollection[0] = new MyDvd("Good Movie", 1991, "David Dai");
@@ -120,8 +118,28 @@ public class App {
         int[] num333 = {4,9,5};
         int[] num666 = {9,4,9,8,4};
 
-        mySolution.intersection(num333, nums666);
+        mySolution.intersection(num333, num666);
+
+        ArrayList<Integer> list1 = new ArrayList<>();
+        list1.add(1);
+        list1.add(1);
         
+        ArrayList<Integer> list2 = new ArrayList<>(); 
+        list2.add(2);
+        list2.add(2);
+
+        list1.addAll(list2);    
+        System.out.println(list1.toString());
+
+        solutionpackage.TreeNode node3 = new solutionpackage.TreeNode(3);
+        solutionpackage.TreeNode node2 = new solutionpackage.TreeNode(2, node3, null);
+        solutionpackage.TreeNode node1 = new solutionpackage.TreeNode(1,null,node2);
+
+        System.out.println(node1.preorderTraversal(node1));
+        
+        
+
+     
 
         
     }   

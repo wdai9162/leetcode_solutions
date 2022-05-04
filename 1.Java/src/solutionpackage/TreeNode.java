@@ -7,9 +7,9 @@ public class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
-    TreeNode() {}
-    TreeNode(int val) { this.val = val; }
-    TreeNode(int val, TreeNode left, TreeNode right) {
+    public TreeNode() {}
+    public TreeNode(int val) { this.val = val; }
+    public TreeNode(int val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
         this.right = right;
@@ -17,19 +17,18 @@ public class TreeNode {
 
     public List<Integer> preorderTraversal(TreeNode root) {
         
-        if(root == null) { return null; }
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> results = new ArrayList<Integer>();
         
-
+        if(root == null) { return null; }                    //this is the base case where recursion stops 
+        results.add(root.val);
         
-        if(curNode.left != null){
-            result.add(curNode.left.val);
-        } else if(curNode.right != null) {
-            result.add(curNode.right.val);
+        if(root.left!=null){
+            results.addAll(preorderTraversal(root.left));
+        }
+        if(root.right!=null){
+            results.addAll(preorderTraversal(root.right));
         }
         
-
-
-        return result;
+        return results;
     }
 }

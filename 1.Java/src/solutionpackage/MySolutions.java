@@ -513,6 +513,11 @@ public class MySolutions {
         return res;
         
     }
+
+    //Happy Number
+    
+
+
     
 
 }
