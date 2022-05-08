@@ -130,18 +130,20 @@ public class App {
 
         list1.addAll(list2);    
         System.out.println(list1.toString());
-
+        
+        solutionpackage.TreeNode node4 = new solutionpackage.TreeNode(4);
         solutionpackage.TreeNode node3 = new solutionpackage.TreeNode(3);
-        solutionpackage.TreeNode node2 = new solutionpackage.TreeNode(2, node3, null);
+        solutionpackage.TreeNode node2 = new solutionpackage.TreeNode(2, node3, node4);
         solutionpackage.TreeNode node1 = new solutionpackage.TreeNode(1,null,node2);
 
-        System.out.println(node1.preorderTraversal(node1));
+        System.out.println(node1.postorderTraversal(node1));
         
+        //  1
+        //   2
+        //  3 4
         
+        System.out.println(node1.levelOrder(node1));
 
-     
-
-        
     }   
 }
 
