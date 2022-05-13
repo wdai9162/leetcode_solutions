@@ -115,43 +115,39 @@ public class App {
         // System.out.println(reversed);
 
 
-        int[] num333 = {4,9,5};
-        int[] num666 = {9,4,9,8,4};
+        // int[] num333 = {4,9,5};
+        // int[] num666 = {9,4,9,8,4};
 
-        mySolution.intersection(num333, num666);
+        // mySolution.intersection(num333, num666);
 
-        ArrayList<Integer> list1 = new ArrayList<>();
-        list1.add(1);
-        list1.add(1);
+        // ArrayList<Integer> list1 = new ArrayList<>();
+        // list1.add(1);
+        // list1.add(1);
         
-        ArrayList<Integer> list2 = new ArrayList<>(); 
-        list2.add(2);
-        list2.add(2);
+        // ArrayList<Integer> list2 = new ArrayList<>(); 
+        // list2.add(2);
+        // list2.add(2);
 
-        list1.addAll(list2);    
-        System.out.println(list1.toString());
+        // list1.addAll(list2);    
+        // System.out.println(list1.toString());
         
-        solutionpackage.TreeNode node4 = new solutionpackage.TreeNode(2);
-        solutionpackage.TreeNode node3 = new solutionpackage.TreeNode(3);
-        solutionpackage.TreeNode node2 = new solutionpackage.TreeNode(2, node3, node4);
-        solutionpackage.TreeNode node1 = new solutionpackage.TreeNode(1,null,node2);
+        // solutionpackage.TreeNode node4 = new solutionpackage.TreeNode(2);
+        // solutionpackage.TreeNode node3 = new solutionpackage.TreeNode(3);
+        // solutionpackage.TreeNode node2 = new solutionpackage.TreeNode(2, node3, node4);
+        // solutionpackage.TreeNode node1 = new solutionpackage.TreeNode(1,null,node2);
 
-        System.out.println(node1.postorderTraversal(node1));
+        // System.out.println(node1.postorderTraversal(node1));
         
-        //  1
-        //   2
-        //  3 4
+        // //  1
+        // //   2
+        // //  3 4
         
-        System.out.println(node1.levelOrder(node1));
+        // System.out.println(node1.levelOrder(node1));
         
-        
-   
-        System.out.println(node1.maximum_depth_bottomup(node1));
+        // System.out.println(node1.maximum_depth_bottomup(node1));
 
 
-        System.out.print(node4==node2);
-       
-
+        mySolution.isHappy(18);
     }   
 }
 

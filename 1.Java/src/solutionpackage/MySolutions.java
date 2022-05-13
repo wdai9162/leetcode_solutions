@@ -1,6 +1,8 @@
 package solutionpackage;
 import java.util.*;
 
+import javax.xml.crypto.dsig.spec.HMACParameterSpec;
+
 
 public class MySolutions {
 
@@ -502,7 +504,6 @@ public class MySolutions {
         
         for (int j: nums2) {
             if (hashset.contains(j)){
-                System.out.println(j);
                 results.add(j);
             }
         }
@@ -514,14 +515,68 @@ public class MySolutions {
             res[i] = it.next();
             i++;
         }
-
+   
         return res;
         
     }
 
     //Happy Number
-    
+    public boolean isHappy(int n) {
+        
+        Stack<Integer> stack = new Stack<Integer>();
+        Set<Integer> hashset = new HashSet<Integer>();
+        hashset.add(n);
+        int sum=0;
 
+        while (n != 1) {
+            while (n >= 1){
+
+                int num = n%10; 
+                // stack.push(num);
+                sum += num * num;
+                n = n/10;
+            }
+            
+            n = sum; 
+            
+            // while(!stack.isEmpty()){
+            //     n += stack.peek() * stack.peek();
+            //     stack.pop();
+            // }
+            
+            if (!hashset.contains(n)){
+                hashset.add(n);
+            } else {
+                return false; 
+            }
+
+            sum = 0;
+
+        }
+        return true;
+    }
+
+
+    //Two Sum  
+    public int[] twoSum(int[] nums, int target) {
+        
+        int[] ans = new int[2];
+
+        Map<Integer,int[]> hashmap = new HashMap<Integer,int[]>();
+
+        for (int i=0; i<nums.length;i++){
+            for (int j=i+1; j<nums.length;j++){
+                int[] idx = {i,j};
+                hashmap.put(nums[i]+nums[j],idx);
+            }
+        }
+
+        if(hashmap.containsKey(target)){
+            ans = hashmap.get(target);
+        }
+
+        return ans;  
+    }
 
     
 
