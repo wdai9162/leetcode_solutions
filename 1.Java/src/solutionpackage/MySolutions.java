@@ -475,13 +475,18 @@ public class MySolutions {
             }
         }
 
-        for (int i: nums) {
-            if (hashset.contains(i)){
-                return i;
-            } 
+        // for (int i: nums) {
+        //     if (hashset.contains(i)){
+        //         return i;
+        //     } 
+        // }
+
+        Iterator<Integer> it = hashset.iterator();
+        while(it.hasNext()){
+            return it.next();
         }
-        
-        return 0;
+
+        return 0; 
     }
 
     //Intersection of Two Arrays

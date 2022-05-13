@@ -94,4 +94,103 @@ public class TreeNode {
         }
         return results; 
     }
+
+
+    public int depth; 
+    public void maximum_depth_topdown(TreeNode root, int curDepth) {
+
+        if(root == null) {
+            return; 
+        }
+
+        depth=Math.max(depth,curDepth);                //<------ check self first and then move down 
+
+        maximum_depth_topdown(root.left, curDepth+1);
+        maximum_depth_topdown(root.right, curDepth+1);
+
+    }
+
+    public int maximum_depth_bottomup(TreeNode root) {
+
+        int left,right,curDepth;
+
+        if(root == null) {
+            return 0; 
+        }
+
+       
+        left=maximum_depth_bottomup(root.left);           //<------ check child first and then move up 
+        right=maximum_depth_bottomup(root.right);
+
+        curDepth=Math.max(left+1,right+1);               
+
+        return curDepth;
+
+    }
+
+
+    public boolean isSymmetric(TreeNode root) {
+
+        if (root == null) {
+            return true; 
+        }
+
+        return isSymmetric(root.left, root.right);
+
+    }
+
+    public boolean isSymmetric(TreeNode left, TreeNode right){
+
+        if (left == null || right == null){
+            return left == right; 
+        }
+
+        if (left.val != right.val){
+            return false; 
+        }
+
+        return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+
+    }
+
+
+    private List<Integer> pathSums = new ArrayList<Integer>();
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+
+        if (root == null ) {
+            return false;
+        }
+
+        pathSum(root,0);
+
+        if(pathSums.contains(targetSum)){
+            return true;
+        }
+        return false; 
+    }
+
+    public void pathSum(TreeNode root, int sum){
+
+        if (root==null){
+            return; 
+        }
+        
+        sum = root.val + sum; 
+
+        if (root.left == null && root.right == null ){
+            pathSums.add(sum);
+        }
+
+        if (root.left != null) {
+            pathSum(root.left, sum);
+        }
+        
+        if (root.right != null) {
+            pathSum(root.right, sum);
+        }
+        
+        return; 
+    }
+    
+
 }

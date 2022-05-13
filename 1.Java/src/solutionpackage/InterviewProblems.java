@@ -1,6 +1,6 @@
 package solutionpackage;
 
-public class Problems {
+public class InterviewProblems {
     
     /*
     -----
