@@ -556,28 +556,153 @@ public class MySolutions {
         return true;
     }
 
-
     //Two Sum  
     public int[] twoSum(int[] nums, int target) {
         
-        int[] ans = new int[2];
+        
+        
+        //brutle force 
+        //int[] ans = new int[2];
+        //Map<Integer,int[]> hashmap = new HashMap<Integer,int[]>();
+        // for (int i=0; i<nums.length;i++){
+        //     for (int j=i+1; j<nums.length;j++){
+        //         int[] idx = {i,j};
+        //         hashmap.put(nums[i]+nums[j],idx);
+        //     }
+        // }
 
-        Map<Integer,int[]> hashmap = new HashMap<Integer,int[]>();
+        // if(hashmap.containsKey(target)){
+        //     ans = hashmap.get(target);
+        // }
 
-        for (int i=0; i<nums.length;i++){
-            for (int j=i+1; j<nums.length;j++){
-                int[] idx = {i,j};
-                hashmap.put(nums[i]+nums[j],idx);
+        //a better way to reduce time complexity 
+        Map<Integer,Integer> hashmap = new HashMap<Integer,Integer>();
+        for (int i=0; i<nums.length; i++){
+            hashmap.put(nums[i],i);
+        }
+
+        for(int i=0; i<nums.length; i++){
+            int complement = target - nums[i];
+            if (hashmap.containsKey(complement) && hashmap.get(complement)!=i){
+               int[] ans = {i, hashmap.get(complement)};
+               return ans; 
             }
         }
 
-        if(hashmap.containsKey(target)){
-            ans = hashmap.get(target);
-        }
-
-        return ans;  
+        return null;  
     }
 
-    
+    //Isomorphic Strings
+    public boolean isIsomorphic(String s, String t) {
+        
+        char[] charArrayS = s.toCharArray();
+        char[] charArrayT = t.toCharArray();
+
+        if (charArrayS.length!=charArrayT.length){
+            return false; 
+        }
+
+        Map<Character,Character> hashmap = new HashMap<Character,Character>();
+
+        for (int i=0; i<charArrayS.length;i++){
+            if(hashmap.containsKey(charArrayS[i])){
+                if(hashmap.get(charArrayS[i]) != charArrayT[i]){
+                    return false; 
+                }
+            } else if(hashmap.containsValue(charArrayT[i])){
+                return false; 
+            } 
+            hashmap.put(charArrayS[i],charArrayT[i]);
+        }
+        return true;
+    }
+
+    //Minimum Index Sum of Two Lists
+    public String[] findRestaurant(String[] list1, String[] list2) {
+
+        
+        List<String> answer = new ArrayList<String>();
+        int leastSum = 2000;
+
+        Map<String,Integer> hashmap = new HashMap<String,Integer>();
+
+        for(int i=0; i<list1.length;i++){
+            hashmap.putIfAbsent(list1[i], i);
+        }
+
+        for(int i=0; i<list2.length;i++){
+            if(hashmap.containsKey(list2[i])){
+                if( (hashmap.get(list2[i])+i) < leastSum) {
+                    leastSum=hashmap.get(list2[i])+i;
+                    answer.clear();
+                    answer.add(list2[i]);
+                } else if(hashmap.get(list2[i])+i == leastSum) {
+                    answer.add(list2[i]);
+                }
+            }
+        }
+
+        String[] answerArray = new String[answer.size()];
+        answerArray = answer.toArray(answerArray);
+
+        return answerArray; 
+    }
+
+    //First Unique Character in a String
+    public int firstUniqChar(String s) {
+
+        Map<Character,Integer> hashmap = new HashMap<Character,Integer>();
+
+        char[] stringArr = s.toCharArray(); 
+
+        for(int i = 0; i < stringArr.length; i++){
+
+            if(!hashmap.containsKey(stringArr[i])){
+                hashmap.put(stringArr[i], 100000+i);
+            } else {
+                int newVal = hashmap.get(stringArr[i]) + 100000;
+                hashmap.put(stringArr[i], newVal);
+            }
+        }
+
+        for(int i = 0; i < stringArr.length; i++){
+            if(hashmap.get(stringArr[i])/100000 == 1){
+                return hashmap.get(stringArr[i])%100000;
+            }
+        }
+        
+        return -1;
+
+    }
+
+    //Intersection of Two Arrays II
+    public int[] intersect(int[] nums1, int[] nums2) {
+        
+        Map<Integer,Integer> hashmap = new HashMap<Integer,Integer>();
+        List<Integer> ans = new ArrayList<>();
+
+        for(int i: nums1){
+            if(!hashmap.containsKey(i)){
+                hashmap.put(i,1);
+            } else{
+                hashmap.put(i,hashmap.get(i)+1);
+            }
+        }
+
+        for (int i: nums2){
+            if(hashmap.containsKey(i) && hashmap.get(i) != 0 ){
+                ans.add(i);
+                hashmap.put(i,hashmap.get(i)-1);
+            }
+        }
+
+        int[] ansArray = new int[ans.size()];
+        for (int i=0; i < ansArray.length; i++){
+            ansArray[i] = ans.get(i);
+        }
+
+        return ansArray;
+    }
+
 
 }

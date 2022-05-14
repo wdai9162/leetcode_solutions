@@ -148,6 +148,10 @@ public class App {
 
 
         mySolution.isHappy(18);
+
+
+        
+
     }   
 }
 
