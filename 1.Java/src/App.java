@@ -150,8 +150,13 @@ public class App {
         mySolution.isHappy(18);
 
 
-        
+        String a = "$5,252.50";
+        Double b = Double.parseDouble( a.replace("$",""));
+        Double discount = b*0.85; 
+        System.out.printf( "%.3f", discount);
 
+
+        
     }   
 }
 

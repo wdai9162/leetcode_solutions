@@ -700,9 +700,32 @@ public class MySolutions {
         for (int i=0; i < ansArray.length; i++){
             ansArray[i] = ans.get(i);
         }
-
         return ansArray;
     }
 
+    //Contains Duplicate II
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        
+        if(nums.length < 2 && k == 0) {
+            return false; 
+        }
+
+        Map<Integer,Integer> hashmap = new HashMap<Integer,Integer>();
+        //   value   index 
+
+        for (int i=0; i < nums.length; i++){
+            if(!hashmap.containsKey(nums[i])){
+                hashmap.put(nums[i],i);
+            } else {
+                if(Math.abs(i-hashmap.get(nums[i])) <= k){
+                    return true; 
+                }else {
+                    hashmap.put(nums[i],i);                //if doesn't work, there is no point to further store the previous element. Store the current one and check the next pair.  i.e [1,0,1,1] k=1  
+                }
+            }
+        }
+
+        return false; 
+    }
 
 }
