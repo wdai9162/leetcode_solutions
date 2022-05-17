@@ -6,6 +6,7 @@ import javax.swing.tree.TreeNode;
 
 import solutionpackage.*;
 
+
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -147,16 +148,18 @@ public class App {
         // System.out.println(node1.maximum_depth_bottomup(node1));
 
 
-        mySolution.isHappy(18);
+        // mySolution.isHappy(18);
 
 
-        String a = "$5,252.50";
-        Double b = Double.parseDouble( a.replace("$",""));
-        Double discount = b*0.85; 
-        System.out.printf( "%.3f", discount);
+        // String a = "$5,252.50";
+        // Double b = Double.parseDouble( a.replace("$",""));
+        // Double discount = b*0.85; 
+        // System.out.printf( "%.3f", discount);
 
+        findAPI findAPI = new findAPI();
+        // findAPI.createMyFile("C:/Users/wdai9/Desktop/", "javaFile.txt");
+        findAPI.getFileAndLength("C:/Users/wdai9/Desktop/");
 
-        
     }   
 }
 
