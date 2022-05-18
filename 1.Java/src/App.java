@@ -158,7 +158,7 @@ public class App {
 
         findAPI findAPI = new findAPI();
         // findAPI.createMyFile("C:/Users/wdai9/Desktop/", "javaFile.txt");
-        findAPI.getFileAndLength("C:/Users/wdai9/Desktop/");
+        findAPI.getFileGreaterThan("/Users/idd", 5);
 
     }   
 }

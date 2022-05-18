@@ -28,16 +28,32 @@ public class findAPI {
             e.printStackTrace();
         }
     }
-
-    public void getFileAndLength(String directory) {
+    
+    
+    //Find all files over 5 MB somewhere under a directory.
+    public void getFileGreaterThan(String directory, int maxMB) {
 
         File dir = new File(directory);
 
         try {
             if(dir.exists()){
                 File[] files = dir.listFiles();
+                if (files == null) {
+                    return; 
+                }
+
                 for (File i: files){
-                    System.out.println(i.length());
+                    if(i.isDirectory()){
+                        // System.out.println(i.getName());    //leetcode_solutions
+                        // System.out.println(i.getParent());  ///Users/idd/Desktop
+                        // System.out.println("Getting into sub folder: "+i.getPath());
+                        getFileGreaterThan(i.getPath(),maxMB);
+
+                    }
+                    if(i.length() > maxMB*1024*1024){
+                        float size = i.length()/1024/1024; 
+                        System.out.println(i.getName()+" ("+size+"MB)");
+                    };
                 }
             } 
         } catch (Exception e){
