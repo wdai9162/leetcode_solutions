@@ -6,6 +6,7 @@ import javax.swing.tree.TreeNode;
 
 import solutionpackage.*;
 
+import anotherpackage.car; 
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -165,6 +166,23 @@ public class App {
         findAPI.findModifiedXdays("C:/Users/wdai9/", 2);
 
 
+        MyDvd dvd1 = new MyDvd("dvd1", 1999, "abc");
+
+        System.out.println(dvd1.buyPriace);
+        dvd1.buyPriace = 100000; 
+
+        MyDvd dvd2 = new MyDvd("dvd2", 1998, "abc");
+    
+        System.out.println(dvd2.buyPriace);
+
+        MyDvd.printAll();
+
+        car car1 = new car("david", "volvo", 23.3333); 
+        
+        car1.setManu("China");
+        car1.getPrice();
+        car1.getManu();
+        car1.getPrice();
 
     }   
 }
