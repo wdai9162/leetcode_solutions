@@ -24,6 +24,6 @@ abstract class machine {
     }
 
    
-
+    
     
 }
