@@ -157,32 +157,63 @@ public class App {
         // Double discount = b*0.85; 
         // System.out.printf( "%.3f", discount);
 
-        findAPI findAPI = new findAPI();
-        // findAPI.createMyFile("C:/Users/wdai9/Desktop/", "javaFile.txt");
-        // findAPI.getFileGreaterThan("C:/Users/wdai9/OneDrive/Documents", 5);
+        // findAPI findAPI = new findAPI();
+        // // findAPI.createMyFile("C:/Users/wdai9/Desktop/", "javaFile.txt");
+        // // findAPI.getFileGreaterThan("C:/Users/wdai9/OneDrive/Documents", 5);
 
-        // findAPI.findFileType("C:/Users/wdai9/OneDrive/Documents", "png");
+        // // findAPI.findFileType("C:/Users/wdai9/OneDrive/Documents", "png");
 
-        findAPI.findModifiedXdays("C:/Users/wdai9/", 2);
+        // findAPI.findModifiedXdays("C:/Users/wdai9/", 2);
 
 
-        MyDvd dvd1 = new MyDvd("dvd1", 1999, "abc");
+        // MyDvd dvd1 = new MyDvd("dvd1", 1999, "abc");
 
-        System.out.println(dvd1.buyPriace);
-        dvd1.buyPriace = 100000; 
+        // System.out.println(dvd1.buyPriace);
+        // dvd1.buyPriace = 100000; 
 
-        MyDvd dvd2 = new MyDvd("dvd2", 1998, "abc");
+        // MyDvd dvd2 = new MyDvd("dvd2", 1998, "abc");
     
-        System.out.println(dvd2.buyPriace);
+        // System.out.println(dvd2.buyPriace);
 
-        MyDvd.printAll();
+        // MyDvd.printAll();
 
-        car car1 = new car("david", "volvo", 23.3333); 
+        // car car1 = new car("david", "volvo", 23.3333); 
         
-        car1.setManu("China");
-        car1.getPrice();
-        car1.getManu();
-        car1.getPrice();
+        // car1.setManu("China");
+        // car1.getPrice();
+        // car1.getManu();
+        // car1.getPrice();
+
+        LinkedList<String> cars = new LinkedList<String>();
+
+        cars.add("volvo");
+        cars.add("bmw");
+        cars.add(1,"benz");
+        System.out.println(cars.indexOf("bmw"));
+
+        Iterator<String> it = cars.iterator(); 
+        while (it.hasNext()){
+            System.out.println(it.next());
+        } 
+
+     
+        HashMap<Integer,String> hashmap = new HashMap<Integer,String>();
+
+        hashmap.put(5,"Australia");
+        hashmap.put(10, "USD");
+
+        hashmap.containsKey(5);
+        hashmap.get(5);
+        
+        for (int i: hashmap.keySet()){
+            System.out.println(i);
+        }
+
+        for (String i: hashmap.values()){
+            System.out.println(i);
+        }
+
+       
 
     }   
 }
