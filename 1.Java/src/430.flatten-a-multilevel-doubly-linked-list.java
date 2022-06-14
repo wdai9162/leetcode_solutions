@@ -36,13 +36,15 @@ class Solution {
             currNode = currNode.next; 
         } 
 
-        while(head.next!=null){
-            if(head.next.prev != head){
-                System.out.print(head.val);
-                return head; 
-            }
-            head = head.next;
-        }
+        // //valid if each node is doubly linked with child=null 
+        // while(head.next!=null){
+            
+        //     if(head.next.prev != head || head.child != null){
+        //         System.out.print("incorrect node: " + head.val);
+        //         return head; 
+        //     }
+        //     head = head.next;
+        // }
 
         return head; 
     }
@@ -55,13 +57,18 @@ class Solution {
         
         currNode.next = currNode.child;
         currNode.child.prev = currNode;   //doubly link the child 
-
+        currNode.child = null;            //remove child as requested 
+ 
         while(currNode.next != null){     //ignore the child level here for now (Needs to be OPTIMIZED with recursion)
             currNode = currNode.next; 
         }
 
         currNode.next = temp;             
-        temp.prev = currNode;             //doubly link back to the parent level 
+        
+        if(temp != null){                 //if the original next is not NULL
+            temp.prev = currNode;         //doubly link back to the parent level 
+        }
+        
         
         currNode = tempHead; 
     }
