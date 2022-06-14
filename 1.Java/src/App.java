@@ -184,36 +184,38 @@ public class App {
         // car1.getManu();
         // car1.getPrice();
 
-        LinkedList<String> cars = new LinkedList<String>();
+        // LinkedList<String> cars = new LinkedList<String>();
 
-        cars.add("volvo");
-        cars.add("bmw");
-        cars.add(1,"benz");
-        System.out.println(cars.indexOf("bmw"));
+        // cars.add("volvo");
+        // cars.add("bmw");
+        // cars.add(1,"benz");
+        // System.out.println(cars.indexOf("bmw"));
 
-        Iterator<String> it = cars.iterator(); 
-        while (it.hasNext()){
-            System.out.println(it.next());
-        } 
+        // Iterator<String> it = cars.iterator(); 
+        // while (it.hasNext()){
+        //     System.out.println(it.next());
+        // } 
 
      
-        HashMap<Integer,String> hashmap = new HashMap<Integer,String>();
+        // HashMap<Integer,String> hashmap = new HashMap<Integer,String>();
 
-        hashmap.put(5,"Australia");
-        hashmap.put(10, "USD");
+        // hashmap.put(5,"Australia");
+        // hashmap.put(10, "USD");
 
-        hashmap.containsKey(5);
-        hashmap.get(5);
+        // hashmap.containsKey(5);
+        // hashmap.get(5);
         
-        for (int i: hashmap.keySet()){
-            System.out.println(i);
-        }
+        // for (int i: hashmap.keySet()){
+        //     System.out.println(i);
+        // }
 
-        for (String i: hashmap.values()){
-            System.out.println(i);
-        }
+        // for (String i: hashmap.values()){
+        //     System.out.println(i);
+        // }
 
-       
+        
+        int[] nums66 = {1,0,1,1,0,1,1,1,1,1,1};
+        System.out.println(mySolution.findMaxConsecutiveOnesII(nums66));
 
     }   
 }

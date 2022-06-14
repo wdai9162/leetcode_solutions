@@ -728,4 +728,57 @@ public class MySolutions {
         return false; 
     }
 
+    //Max Consecutive Ones II
+    // Given a binary array, find the maximum number of consecutive 1s in this array if you can flip at most one 0.
+
+    // Example 1:
+
+    // Input: [1,0,1,1,0]
+    // Output: 4
+    // Explanation: Flip the first zero will get the the maximum number of consecutive 1s.
+    //     After flipping, the maximum number of consecutive 1s is 4.
+    // Note:
+
+    // The input array will only contain 0 and 1.
+    // The length of input array is a positive integer and will not exceed 10,000
+    // Follow up: What if the input numbers come in one by one as an infinite stream? In other words, you can't store all numbers coming from the stream as it's too large to hold in memory. Could you solve it efficiently?
+    public int findMaxConsecutiveOnesII(int[] nums){
+
+        if(nums==null){
+            return 0;
+        }
+
+        int maxCounter = 0;
+        boolean flip = false; 
+        int slow,fast;
+
+        //    |
+        //  | 
+        // [1,0,1,1,0]
+
+        for (slow = 0; slow < nums.length; slow++){
+
+            if(nums[slow] == 1) {
+                fast = slow+1; 
+       
+                while (fast < nums.length){
+                    System.out.println("   "+fast+"bbb"+(fast-slow)+flip+"bbb"+maxCounter);
+                    if(nums[fast] == 1 && fast == nums.length-1&& ((fast-slow) > maxCounter)){ System.out.println("update"); maxCounter = fast-slow; flip = false; break;}       //<=====very UGLY!!!!
+                    else if(nums[fast] == 1) fast ++; 
+                    else if(!flip){ flip = true; fast++; }
+                    else if(flip && ((fast-slow) > maxCounter)){ System.out.println("update"); maxCounter = fast-slow; flip = false; break;}
+                    else {
+                        flip = false;
+                        break;
+                    }
+                }
+            }
+            System.out.println(slow);
+        }
+        return maxCounter; 
+    }
+    
+
+
+    
 }
