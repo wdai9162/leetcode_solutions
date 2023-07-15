@@ -30,5 +30,3 @@ class Solution:
         
         while head:
             new_head.random = head.random
-            
-            s
