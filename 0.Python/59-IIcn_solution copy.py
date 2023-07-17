@@ -8,21 +8,19 @@ class MaxQueue:
 
     def max_value(self) -> int:
         if not self.val: return -1
-        return self.max[-1]
+        return self.max[0]
 
 
     def push_back(self, value: int) -> None:
-
         self.val.append(value)
-        if not self.max or self.max[-1] <= value:
-            self.max.append(value)
+        while self.max and value > self.max[-1]:
+            self.max.pop()
+        self.max.append(value)
 
     def pop_front(self) -> int:
         if not self.val: return -1
-        pop = self.val[0]
-        if pop == self.max[0]: self.max = self.max[1:]
-        self.val = self.val[1:]
-        return pop
+        if self.val[0] == self.max[0]: self.max.pop(0)
+        return self.val.pop(0)
 
 
 # Your MaxQueue object will be instantiated and called as such:
