@@ -3,7 +3,6 @@
 class Solution:
     def strToInt(str: str) -> int:
         
-        if not str: print("nothing"); return 0
         
         ans = None
         int_min = (-2)**31
