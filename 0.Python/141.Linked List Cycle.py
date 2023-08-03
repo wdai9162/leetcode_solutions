@@ -11,19 +11,27 @@ class Solution:
         
         if not head: return False
         
-        slow, fast = head, head.next #如果有有loop，迟早都要相遇，错开第一步来简化while loop的第一个iteration相等问题
+        # slow, fast = head, head.next #如果有有loop，迟早都要相遇，错开第一步来简化while loop的第一个iteration相等问题
+        slow, fast = head, head #这个处理再while之后先走再判断，逻辑倒过来
         
-        while slow != fast: 
+        # while slow != fast: 
             
-            #结束条件为fast走完，或者即将走完
-            if fast is None or fast.next is None: return False
+        #     #结束条件为fast走完，或者即将走完
+        #     if fast is None or fast.next is None: return False
             
-            # 1:2 move
+        #     # 1:2 move
+        #     slow = slow.next
+        #     fast = fast.next.next
+        
+        while fast is not None and fast.next is not None: 
+            
             slow = slow.next
             fast = fast.next.next
             
+            if slow == fast: return True
+            
         #如果slow=fast了，说明有loop
-        return True
+        return False
     
         # node_seen = set()
 

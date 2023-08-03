@@ -41,14 +41,13 @@ class Solution:
         
         while pointer_A != pointer_B:
             
-            if pointer_A.next is None: pointer_A = headB #ListA_Distinct + Shared_section finished
+            if pointer_A is None: pointer_A = headB #ListA_Distinct + Shared_section finished
             else: 
                 pointer_A = pointer_A.next
         
-            if pointer_B.next is None: pointer_B = headA #ListA_Distinct + Shared_section finished
+            if pointer_B is None: pointer_B = headA #ListA_Distinct + Shared_section finished
             else: 
                 pointer_B = pointer_B.next
         
-        #if all finished and no match, means no intersection
-        return None 
+        return pointer_A
             
