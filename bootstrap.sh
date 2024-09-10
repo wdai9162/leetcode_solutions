@@ -1,6 +1,15 @@
 #!/bin/bash
 
+# Define the log file
+LOG_FILE="/tmp/bootstrap.log"
+
+# Redirect all output and errors to the log file
+exec > >(tee -a $LOG_FILE) 2>&1
+
+echo "Starting the bootstrap script..."
+
 # Update the package list and upgrade the system
+echo "Updating and upgrading the system..."
 sudo apt update && sudo apt upgrade -y
 
 # 1. Install and start SSH server
@@ -11,6 +20,8 @@ sudo systemctl start ssh
 
 # 2. Disable root password login
 echo "Disabling root password login in SSH..."
+sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 sudo sed -i 's/#PermitRootLogin yes/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config
 sudo systemctl reload ssh
 
@@ -18,12 +29,16 @@ sudo systemctl reload ssh
 echo "Enabling SSH Public Key Authentication..."
 sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 
-# Add the SSH public key to the authorized_keys file
-echo "Adding your SSH public key..."
-SSH_DIR="/home/$USER/.ssh"
+# Determine home directory
+if [ "$USER" == "root" ]; then
+    SSH_DIR="/root/.ssh"
+else
+    SSH_DIR="/home/$USER/.ssh"
+fi
 AUTH_KEYS="$SSH_DIR/authorized_keys"
 
-# Create .ssh directory and authorized_keys file if they don't exist
+# Add the SSH public key to the authorized_keys file
+echo "Adding your SSH public key..."
 mkdir -p "$SSH_DIR"
 chmod 700 "$SSH_DIR"
 
@@ -55,9 +70,9 @@ fi
 echo "Installing necessary packages..."
 sudo apt install -y git python3-dev libffi-dev gcc libssl-dev python3-venv
 
-# 7. Install common tools
-echo "Installing common tools like dig, netstat, ps..."
-sudo apt install -y dnsutils net-tools procps htop wget
+# 7. Install common tools like dig, netstat, ps, lshw, lsof
+echo "Installing common tools like dig, netstat, ps, lshw, lsof..."
+sudo apt install -y dnsutils net-tools procps lshw lsof
 
 # 8. Ensure Docker is installed and running
 if ! command -v docker &> /dev/null; then
