@@ -12,6 +12,10 @@ echo "Starting the bootstrap script..."
 echo "Updating and upgrading the system..."
 sudo apt update && sudo apt upgrade -y
 
+# Install git early since it will be used later in the script
+echo "Installing git..."
+sudo apt install -y git
+
 # 1. Install and start SSH server
 echo "Installing and starting SSH server..."
 sudo apt install -y openssh-server
