@@ -8,6 +8,18 @@ exec > >(tee -a $LOG_FILE) 2>&1
 
 echo "Starting the bootstrap script..."
 
+# Prompt for the new hostname
+echo "Please enter the new hostname: "
+read NEW_HOSTNAME
+
+# Set the hostname
+echo "Setting the new hostname to $NEW_HOSTNAME..."
+sudo hostnamectl set-hostname "$NEW_HOSTNAME"
+
+# Update the /etc/hosts file to reflect the new hostname
+echo "Updating /etc/hosts with the new hostname..."
+sudo sed -i "s/127.0.1.1 .*/127.0.1.1 $NEW_HOSTNAME/" /etc/hosts
+
 # Update the package list and upgrade the system
 echo "Updating and upgrading the system..."
 sudo apt update && sudo apt upgrade -y
