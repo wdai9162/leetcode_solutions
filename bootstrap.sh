@@ -8,9 +8,11 @@ exec > >(tee -a $LOG_FILE) 2>&1
 
 echo "Starting the bootstrap script..."
 
-# Prompt for the new hostname
-echo "Please enter the new hostname: "
-read NEW_HOSTNAME
+# Check if hostname is provided as an environment variable, otherwise prompt for it
+if [ -z "$NEW_HOSTNAME" ]; then
+  echo "Please enter the new hostname: "
+  read NEW_HOSTNAME
+fi
 
 # Set the hostname
 echo "Setting the new hostname to $NEW_HOSTNAME..."
@@ -34,14 +36,14 @@ sudo apt install -y openssh-server
 sudo systemctl enable ssh
 sudo systemctl start ssh
 
-# 2. Disable root password login
+# Disable root password login
 echo "Disabling root password login in SSH..."
 sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 sudo sed -i 's/#PermitRootLogin yes/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config
 sudo systemctl reload ssh
 
-# 3. Set up SSH Public Key Authentication
+# Set up SSH Public Key Authentication
 echo "Enabling SSH Public Key Authentication..."
 sudo sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 
@@ -88,7 +90,7 @@ sudo apt install -y git python3-dev libffi-dev gcc libssl-dev python3-venv
 
 # 7. Install common tools like dig, netstat, ps, lshw, lsof
 echo "Installing common tools like dig, netstat, ps, lshw, lsof..."
-sudo apt install -y dnsutils net-tools procps lshw lsof
+sudo apt install -y dnsutils net-tools procps lshw lsof atop
 
 # 8. Ensure Docker is installed and running
 if ! command -v docker &> /dev/null; then
